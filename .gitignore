@@ -1,0 +1,8 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/Votemaki/Infra/bin/Debug/netcoreapp3.1
+/Votemaki/Votemaki.Core/bin/Debug/netcoreapp3.1
+/Votemaki/Votemaki.Core/obj/Debug/netcoreapp3.1
+/Votemaki/WebApi/bin/Debug/netcoreapp3.1

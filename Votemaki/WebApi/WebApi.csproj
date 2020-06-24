@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Votemaki.WebApi</RootNamespace>
+    <AssemblyName>Votemaki.WebApi</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infra\Infra.csproj" />
+    <ProjectReference Include="..\Votemaki.Core\Votemaki.Core.csproj" />
+  </ItemGroup>
+
+
+</Project>
