@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Votemaki.Core.Entities
+namespace Votemaki.Core.Entities.SecondaryEntities
 {
     public class IdentificatorType
     {

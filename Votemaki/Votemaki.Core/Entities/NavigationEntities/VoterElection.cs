@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Votemaki.Core.Entities.MainEntities;
 
-namespace Votemaki.Core.Entities.NavigationEntity
+namespace Votemaki.Core.Entities.NavigationEntities
 {
     public class VoterElection
     {

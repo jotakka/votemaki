@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Votemaki.Core.Entities
+namespace Votemaki.Core.Entities.MainEntities
 {
-    public class Roles : IdentityRole<string>
+    public class Party : Votable
     {
+        public ICollection<Candidate> Candidates { get; set; }
     }
 }

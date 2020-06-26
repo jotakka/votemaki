@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Votemaki.Core.Entities.NavigationEntity;
 
-namespace Votemaki.Core.Entities
+namespace Votemaki.Core.Entities.MainEntities
 {
     public class Voter : ApplicationUser
     {

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Votemaki.Core.Entities
+namespace Votemaki.Core.Entities.MainEntities
 {
     public class Vote
     {
