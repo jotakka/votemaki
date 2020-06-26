@@ -10,7 +10,7 @@ namespace Votemaki.Core.Entities.NavigationEntities
 
         public Guid ApplicationUserId { get; set; }
         public Guid ElectionId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public TemakiUser ApplicationUser { get; set; }
         public bool HasVoted { get; set; } = false;
         public Voter Voter { get; set; }
         public bool IsAllowedToVote { get; set; } = true;

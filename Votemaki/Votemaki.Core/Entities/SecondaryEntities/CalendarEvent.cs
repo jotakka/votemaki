@@ -6,6 +6,7 @@ using System.Text;
 namespace Votemaki.Core.Entities.SecondaryEntities
 {
     public class CalendarEvent
+
     {
         [Key]
         public Guid Id { get; set; }

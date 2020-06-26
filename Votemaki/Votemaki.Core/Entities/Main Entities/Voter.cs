@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Votemaki.Core.Entities.NavigationEntity;
-
+﻿using System.Collections.Generic;
+using Votemaki.Core.Entities.NavigationEntities;
+    
 namespace Votemaki.Core.Entities.MainEntities
 {
-    public class Voter : ApplicationUser
+    public class Voter : TemakiUser
     {
         public bool IsActive { get; set; } = true;
         public ICollection<VoterElection>  VoterElections{ get; set; }

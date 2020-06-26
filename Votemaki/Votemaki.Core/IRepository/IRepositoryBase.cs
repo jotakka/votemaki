@@ -8,8 +8,8 @@ namespace Votemaki.Core.IRepositories
     public interface IRepositoryBase<T>
     {
         Task<Guid> AddAsync(T input);
-        Task Delete(Guid id);
-        Task Update(T input);
-        Task<T> Get(Guid id);
+        Task DeleteAsync(Guid id);
+        Task UpdateAsync(T input);
+        Task<T> GetAsync(Guid id);
     }
 }

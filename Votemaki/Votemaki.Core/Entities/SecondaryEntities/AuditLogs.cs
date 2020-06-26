@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Votemaki.Core.Entities.SecondaryEntities
 {
-    public class AuditLogs 
+    public class AuditLog 
     {
         public int Id { get; set; }
         public string Message { get; set; }
