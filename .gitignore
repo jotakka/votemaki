@@ -6,3 +6,6 @@
 /Votemaki/Votemaki.Core/bin/Debug/netcoreapp3.1
 /Votemaki/Votemaki.Core/obj/Debug/netcoreapp3.1
 /Votemaki/WebApi/bin/Debug/netcoreapp3.1
+/Votemaki/SushiBar/obj
+Votemaki/BlazorApp1/obj
+Votemaki/.vs/Votemaki/DesignTimeBuild
