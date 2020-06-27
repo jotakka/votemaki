@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Votemaki.Core.Entities.ConfigurationEntities;
 using Votemaki.Core.Entities.SecondaryEntities;
@@ -14,7 +11,6 @@ namespace Votemaki.Infra.Repositories
 {
     public class ProcessConfigurationRepository : IProcessConfigurationRepository
     {
-
 
         private readonly TemakiContext _temakiContext;
         public ProcessConfigurationRepository(
@@ -32,25 +28,22 @@ namespace Votemaki.Infra.Repositories
             }
 
             addBasicCalendarEventObjects(input);
-
+            await updateOverallProgress();
             await _temakiContext.ProcessConfigurations.AddAsync(input);
             await _temakiContext.SaveChangesAsync();
 
             return input.Id;
         }
 
-
         public async Task DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-
         public async Task<ProcessConfiguration> GetAsync()
         {
             return await _temakiContext.ProcessConfigurations.FirstOrDefaultAsync();
         }
-
 
         public async Task<ProcessConfiguration> GetAsync(Guid id)
         {
@@ -61,16 +54,13 @@ namespace Votemaki.Infra.Repositories
         {
             var pc = await GetAsync();
 
-            if(pc is null)
+            if (pc is null)
             {
                 throw new Exception("There is no process configuration registered");
             }
-
-            
-
-            
         }
 
+        #region PRIVATE
 
         private static void addBasicCalendarEventObjects(ProcessConfiguration input)
         {
@@ -91,10 +81,15 @@ namespace Votemaki.Infra.Repositories
                 Type = CalendarEventTypeEnum.EndElection,
                 Value = DateTimeOffset.MinValue
             }
-
         };
-
             input.CalendarEvents = calendarEvents;
         }
+
+        private async Task updateOverallProgress()
+        {
+            var progressRegister = await _temakiContext.OverallProgressRegisters.FirstOrDefaultAsync();
+            progressRegister.HasProcessConfiguration = true;
+        }
+        #endregion
     }
 }

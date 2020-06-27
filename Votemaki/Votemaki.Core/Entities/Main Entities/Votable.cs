@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Votemaki.Core.Entities.NavigationEntities;
 
 namespace Votemaki.Core.Entities.MainEntities
 {
@@ -12,6 +7,7 @@ namespace Votemaki.Core.Entities.MainEntities
     {
         [Key]
         public Guid Id { get; set; }
+
         public string PublicName { get; set; } = "";
         public string Description { get; set; } = "";
         public string PictureUrl { get; set; } = "";

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Votemaki.Core\Votemaki.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Importers\" />
+  </ItemGroup>
+
 </Project>

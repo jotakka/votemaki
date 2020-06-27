@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Votemaki.Core.Entities.ConfigurationEntities
 {
@@ -9,11 +7,12 @@ namespace Votemaki.Core.Entities.ConfigurationEntities
     {
         [Key]
         public Guid Id { get; set; }
-        [Range(6,10)]
+
+        [Range(6, 10)]
         public uint MinLength { get; set; } = 6;
+
         public bool UpperCaseMandatory { get; set; } = false;
         public bool SpecialCharacterMandatory { get; set; } = false;
         public bool NumbersMandatory { get; set; } = false;
-
     }
 }

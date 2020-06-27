@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;  
+﻿using System;
 
 namespace Votemaki.Core.Entities.SecondaryEntities
 {
-    public class AuditLog 
+    public class AuditLog
     {
         public int Id { get; set; }
         public string Message { get; set; }
@@ -14,10 +10,10 @@ namespace Votemaki.Core.Entities.SecondaryEntities
         public AuditLogType Type { get; set; }
         public EntityTypeEnum EntityType { get; set; }
         public Guid EntityId { get; set; }
-
     }
 
     #region ENUMS
+
     public enum EntityTypeEnum
     {
         Voter,
@@ -32,8 +28,5 @@ namespace Votemaki.Core.Entities.SecondaryEntities
         Party,
     }
 
-
-    #endregion
-
-
+    #endregion ENUMS
 }

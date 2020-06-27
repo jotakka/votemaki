@@ -26,6 +26,7 @@ namespace Votemaki.Infra.Storage
         public DbSet<AuditLog> AuditLogs { get; internal set; }
         public DbSet<CalendarEvent> CalendarEvents { get; internal set; }
         public DbSet<IdentificatorType> IdentificatorTypes { get; internal set; }
+        public DbSet<OverallProgressRegister> OverallProgressRegisters { get; set; }
         #endregion
 
 
