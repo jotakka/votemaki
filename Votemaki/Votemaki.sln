@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Votemaki.Core", "Votemaki.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{91432624-ADBE-4F43-B043-A8BC24EE3FD7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{BD154A33-CC3D-41DC-A264-93086D381673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Test", "Test\Infra.Test.csproj", "{BD154A33-CC3D-41DC-A264-93086D381673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiBar", "SushiBar\SushiBar.csproj", "{8BDAAC88-5359-4B74-8B52-721EED704874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiBar", "SushiBar\SushiBar.csproj", "{8BDAAC88-5359-4B74-8B52-721EED704874}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

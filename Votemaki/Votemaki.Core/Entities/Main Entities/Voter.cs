@@ -6,6 +6,6 @@ namespace Votemaki.Core.Entities.MainEntities
     public class Voter : TemakiUser
     {
         public bool IsActive { get; set; } = true;
-        public ICollection<VoterElection>  VoterElections{ get; set; }
+        public IEnumerable<VoterElection>  VoterElections{ get; set; }
     }
 }

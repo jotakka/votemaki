@@ -8,6 +8,6 @@ namespace Votemaki.Core.Entities.MainEntities
 {
     public class Party : Votable
     {
-        public ICollection<Candidate> Candidates { get; set; }
+        public IEnumerable<Candidate> Candidates { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace Votemaki.Core.Entities.MainEntities
     public class Election 
     {
         public string Name { get; set; }
-        public ICollection<Votable> Votables { get; set; }
-        public ICollection<VoterElection> VoterElections { get; set; }
-        public ICollection<Vote> Votes { get; set; }
+        public IEnumerable<Votable> Votables { get; set; }
+        public IEnumerable<VoterElection> VoterElections { get; set; }
+        public IEnumerable<Vote> Votes { get; set; }
     }
 }

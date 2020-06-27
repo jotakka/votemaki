@@ -14,7 +14,7 @@ namespace Votemaki.Core.Entities.ConfigurationEntities
         [Required]
         [MaxLength(1), MinLength(150)]
         public string Institution { get; set; }
-        public ICollection<CalendarEvent> CalendarEvents { get; set; }
+        public IEnumerable<CalendarEvent> CalendarEvents { get; set; }
         [ForeignKey("PasswordConfigurationId")]
         public Guid? PasswordConfigurationId { get; set; }
         public PasswordConfiguration PasswordConfiguration { get; set; }
