@@ -1,8 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Votemaki.SushiBar</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazorise" Version="0.9.1" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.1" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.1" />
+  </ItemGroup>
 
 </Project>

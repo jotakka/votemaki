@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +12,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SushiBar.Data;
+using Microsoft.Extensions.Options;
+using Votemaki.SushiBar.Data;
 
 namespace SushiBar
 {
@@ -29,7 +33,10 @@ namespace SushiBar
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            SetBlazorizeService(services);
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,16 +52,40 @@ namespace SushiBar
                 app.UseHsts();
             }
 
+            ConfigLocalization(app);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.ApplicationServices
+                .UseBootstrapProviders()
+                .UseFontAwesomeIcons();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+        }
+
+        private static void ConfigLocalization(IApplicationBuilder app)
+        {
+            app.UseRequestLocalization(app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>()
+                            .Value);
+        }
+
+
+
+        private static void SetBlazorizeService(IServiceCollection services)
+        {
+            services
+                          .AddBlazorise(options =>
+                          {
+                              options.ChangeTextOnKeyPress = true; // optional
+                          })
+                          .AddBootstrapProviders()
+                          .AddFontAwesomeIcons();
         }
     }
 }
