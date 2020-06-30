@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Votemaki.SushiBar.Data
+namespace Sushibar.Data
 {
     public class WeatherForecastService
     {

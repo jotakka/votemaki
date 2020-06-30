@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>Configuração do Process</value>
-  </data>
-  <data name="institutionNamePH" xml:space="preserve">
-    <value>Insira o nome da instituição</value>
-  </data>
-  <data name="institutionNameHelper" xml:space="preserve">
-    <value>Nome da instituição</value>
+  <data name="TEST" xml:space="preserve">
+    <value>Testado aeee 2</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 using System;
 
-namespace Votemaki.SushiBar.Data
+namespace Sushibar.Data
 {
     public class WeatherForecast
     {

@@ -14,10 +14,9 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Votemaki.SushiBar.Data;
+using Sushibar.Data;
 
-namespace SushiBar
+namespace Sushibar
 {
     public class Startup
     {
@@ -35,12 +34,10 @@ namespace SushiBar
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            configLocalizationService(services);
+            configBlazorizeService(services);
 
-            configureLocalizationService(services);
-
-            SetBlazorizeService(services);
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -56,15 +53,14 @@ namespace SushiBar
                 app.UseHsts();
             }
 
-            ConfigLocalization(app);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseRequestLocalization();
             app.UseRouting();
 
             app.ApplicationServices
-                .UseBootstrapProviders()
-                .UseFontAwesomeIcons();
+              .UseBootstrapProviders()
+              .UseFontAwesomeIcons();
 
             app.UseEndpoints(endpoints =>
             {
@@ -73,40 +69,36 @@ namespace SushiBar
             });
         }
 
-        private static void ConfigLocalization(IApplicationBuilder app)
+
+        private static void configBlazorizeService(IServiceCollection services)
         {
-            app.UseRequestLocalization(app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>()
-                            .Value);
+            services
+                  .AddBlazorise(options =>
+                  {
+                      options.ChangeTextOnKeyPress = true; // optional
+                  })
+                  .AddBootstrapProviders()
+                  .AddFontAwesomeIcons();
         }
 
-
-        private static void configureLocalizationService(IServiceCollection services)
+        private static void configLocalizationService(IServiceCollection services)
         {
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddLocalization(options =>
+                        {
+                            options.ResourcesPath = "Resources";
+                        });
+
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new List<CultureInfo>() {
-                new CultureInfo("pt-BR"),
-                new CultureInfo("en-US")
-                };
+                var supportedCultures = new[]
+                {new CultureInfo("pt-BR"),
+                    new CultureInfo("en-US")};
 
-                options.DefaultRequestCulture = new RequestCulture("pt-BR");
+                options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
-
             });
         }
 
-
-        private static void SetBlazorizeService(IServiceCollection services)
-        {
-            services
-                          .AddBlazorise(options =>
-                          {
-                              options.ChangeTextOnKeyPress = true; // optional
-                          })
-                          .AddBootstrapProviders()
-                          .AddFontAwesomeIcons();
-        }
     }
 }

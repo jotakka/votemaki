@@ -1,7 +1,19 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h1>Hello, world!  @L["TEST"] </h1>
 
 Welcome to your new app.
 
-@*<SurveyPrompt Title="How is Blazor working for you?" />*@
+<SurveyPrompt Title="How is Blazor working for you?" />
+<button class="btn btn-primary" @onclick="UpdateHeading">
+    Update heading
+</button>
+@code {
+    [Inject] public  IStringLocalizer<Index> L { get; set; }
+
+
+    private void UpdateHeading(MouseEventArgs e)
+    {
+        var tst = L["TEST"];
+    }
+}
