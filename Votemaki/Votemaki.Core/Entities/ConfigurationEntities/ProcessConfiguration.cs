@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Votemaki.Core.Entities.MainEntities;
 using Votemaki.Core.Entities.SecondaryEntities;
 
 namespace Votemaki.Core.Entities.ConfigurationEntities
@@ -14,6 +15,7 @@ namespace Votemaki.Core.Entities.ConfigurationEntities
         [Required]
         [MaxLength(1), MinLength(150)]
         public string Institution { get; set; }
+        public string ProcessName { get; set; }
 
         public IEnumerable<CalendarEvent> CalendarEvents { get; set; }
 
@@ -21,5 +23,6 @@ namespace Votemaki.Core.Entities.ConfigurationEntities
         public Guid? PasswordConfigurationId { get; set; }
 
         public PasswordConfiguration PasswordConfiguration { get; set; }
+        public IEnumerable<Election> Elections { get; set; }
     }
 }

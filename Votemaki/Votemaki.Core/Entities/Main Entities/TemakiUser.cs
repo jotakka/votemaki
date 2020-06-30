@@ -14,6 +14,9 @@ namespace Votemaki.Core.Entities.MainEntities
         [Required]
         public DateTimeOffset RegisteredAt { get; set; }
 
+        public Guid RegionId { get; set; }
+        public Region Region { get; set; }
+
         public IEnumerable<Role> Roles { get; set; }
         public IEnumerable<Identification> Identifications { get; set; }
     }

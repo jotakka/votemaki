@@ -7,7 +7,6 @@ namespace Votemaki.Core.Entities.MainEntities
     {
         [ForeignKey("ApplicationUserId")]
         public Guid ApplicationUserId { get; set; }
-
         public TemakiUser? ApplicationUser { get; set; }
     }
 }
