@@ -47,7 +47,8 @@ namespace Votemaki.Infra.Repositories
 
         public async Task<ProcessConfiguration> GetAsync(Guid id)
         {
-            return await GetAsync();
+            return await _temakiContext.ProcessConfigurations.AsNoTracking()
+                    .FirstOrDefaultAsync();
         }
 
         public async Task UpdateAsync(ProcessConfiguration input)
