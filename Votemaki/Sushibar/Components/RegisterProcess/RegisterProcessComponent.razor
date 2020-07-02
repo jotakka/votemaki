@@ -1,0 +1,29 @@
+﻿
+<h3>@_localizer["title"]</h3>
+<Validations Mode="ValidationMode.Auto" Model="@processConfiguration">
+    <Validation>
+        <Field Horizontal="true">
+            <FieldLabel ColumnSize="ColumnSize.Is2">@_localizer["processNameDisplayName"]</FieldLabel>
+            <FieldBody ColumnSize="ColumnSize.Is10">
+                <TextEdit Placeholder=@_localizer["processNamePlaceHolder"] @bind-Text="@processConfiguration.Name">
+                    <Feedback>
+                        <ValidationError />
+                    </Feedback>
+                </TextEdit>
+            </FieldBody>
+        </Field>
+    </Validation>
+</Validations>
+
+
+
+@code {
+    [Inject] public IStringLocalizer<RegisterProcessComponent> _localizer { get; set; }
+
+    private ProcessConfiguration processConfiguration = new ProcessConfiguration();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("OnValidSubmit");
+    }
+}

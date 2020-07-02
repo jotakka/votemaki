@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Test", "Test\Infra.Test.csproj", "{BD154A33-CC3D-41DC-A264-93086D381673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sushibar", "Sushibar\Sushibar.csproj", "{E921A41F-06AD-4733-B4A0-415C78A5D160}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sushibar", "Sushibar\Sushibar.csproj", "{E921A41F-06AD-4733-B4A0-415C78A5D160}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

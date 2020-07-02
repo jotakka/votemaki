@@ -1,15 +1,21 @@
 ﻿@page "/"
 
+@using Sushibar.Components.RegisterProcess
+@using Sushibar.Components.Institution
+
 <h1>Hello, world!  @L["TEST"] </h1>
 
 Welcome to your new app.
 
+
+<RegisterProcessComponent></RegisterProcessComponent>
+<InstitutionRegistrationComponent></InstitutionRegistrationComponent>
 <SurveyPrompt Title="How is Blazor working for you?" />
 <button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 @code {
-    [Inject] public  IStringLocalizer<Index> L { get; set; }
+    [Inject] public IStringLocalizer<Index> L { get; set; }
 
 
     private void UpdateHeading(MouseEventArgs e)

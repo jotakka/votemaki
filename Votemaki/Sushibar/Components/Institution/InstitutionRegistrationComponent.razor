@@ -1,0 +1,34 @@
+﻿<h3>@_localizer["title"]</h3>
+<Validations Mode="ValidationMode.Auto" ValidateOnLoad="false"  Model="@institution">
+    <Validation>
+        <Field Horizontal="true">
+            <FieldLabel ColumnSize="ColumnSize.Is2">@_localizer["institutionNameDisplayName"]</FieldLabel>
+            <FieldBody ColumnSize="ColumnSize.Is10">
+                <TextEdit Placeholder=@_localizer["institutionNamePlaceHolder"] @bind-Text="@institution.Name">
+                    <Feedback>
+                        <ValidationError />
+                    </Feedback>
+                </TextEdit>
+            </FieldBody>
+        </Field>
+    </Validation>
+    <Validation>
+        <Field Horizontal="true">
+            <FieldLabel ColumnSize="ColumnSize.Is2">@_localizer["addressDisplayName"]</FieldLabel>
+            <FieldBody ColumnSize="ColumnSize.Is10">
+                <TextEdit Placeholder=@_localizer["addressPlaceHolder"] @bind-Text="@institution.Address">
+                    <Feedback>
+                        <ValidationError />
+                    </Feedback>
+                </TextEdit>
+            </FieldBody>
+        </Field>
+    </Validation>
+</Validations>
+
+
+@code {
+    [Inject] public IStringLocalizer<InstitutionRegistrationComponent> _localizer { get; set; }
+
+    private Institution institution = new Institution();
+}
