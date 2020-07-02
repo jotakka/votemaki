@@ -26,16 +26,57 @@ namespace Votemaki.Infra.Storage
         public DbSet<AuditLog> AuditLogs { get; internal set; }
         public DbSet<CalendarEvent> CalendarEvents { get; internal set; }
         public DbSet<IdentificatorType> IdentificatorTypes { get; internal set; }
-        public DbSet<OverallProgressRegister> OverallProgressRegisters { get; set; }
+        public DbSet<OverallProgressRegister> OverallProgressRegisters { get; internal set; }
+        public DbSet<Institution> Institutons { get; internal set; }
+
         #endregion
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Core Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Core Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+
+            instituteEntityConfig(builder);
+
+            processConfigurationEntityConfig(builder);
+
+            builder.Entity<PasswordConfiguration>(e =>
+            {
+                e.HasOne(pc => pc.ProcessConfiguration)
+                    .WithOne(pc => pc.PasswordConfiguration)
+                    .HasForeignKey<ProcessConfiguration>(pc => pc.PasswordConfigurationId);
+
+            });
+
+
+        }
+
+        private static void processConfigurationEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<ProcessConfiguration>(
+                e =>
+                {
+                    e.HasOne(pc => pc.Institution)
+                        .WithMany(pc => pc.ProcessConfigurations)
+                        .HasForeignKey(pc => pc.InstitutionId);
+
+                    e.HasMany(pc => pc.CalendarEvents)
+                    .WithOne(cv => cv.ProcessConfiguration)
+                    .HasForeignKey(cv => cv.ProcessConfigurationId);
+
+                }
+                );
+        }
+
+        private static void instituteEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<Institution>(e =>
+            {
+                e.HasMany(i => i.ProcessConfigurations)
+                .WithOne(pc => pc.Institution)
+                .HasForeignKey(pc => pc.InstitutionId);
+                e.HasMany(i => i.Regions);
+            });
         }
     }
 }

@@ -14,5 +14,8 @@ namespace Votemaki.Core.Entities.ConfigurationEntities
         public bool UpperCaseMandatory { get; set; } = false;
         public bool SpecialCharacterMandatory { get; set; } = false;
         public bool NumbersMandatory { get; set; } = false;
+
+        public Guid ProcessConfigurationId { get; set; }
+        public ProcessConfiguration ProcessConfiguration { get; set; }
     }
 }
