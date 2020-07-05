@@ -2,13 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Votemaki.Core.Entities.ConfigurationEntities;
 using Votemaki.Core.Entities.MainEntities;
 using Votemaki.Infra.Repositories;
-using Votemaki.Infra.Storage;
 using Xunit;
 
 namespace Infra.Test.Repositories
