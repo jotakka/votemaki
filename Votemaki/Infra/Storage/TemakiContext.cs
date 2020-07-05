@@ -36,19 +36,167 @@ namespace Votemaki.Infra.Storage
         {
             base.OnModelCreating(builder);
 
+            #region Main Entities
             instituteEntityConfig(builder);
+
+            electionEntityConfig(builder);
+
+            votableEntityConfig(builder);
+
+            regionEntityConfig(builder);
+
+            voteEntityConfig(builder);
+
+            identificationEntityConfig(builder);
+
+            #endregion
+
+            #region Configuration Entities
 
             processConfigurationEntityConfig(builder);
 
+            passwordConfigurationEntityConfig(builder);
+
+
+
+            #endregion
+
+            #region Secondary Entities
+
+            identificatorEntityConfig(builder);
+
+            overallProcessRegisterEntityConfig(builder);
+
+            #endregion
+
+            #region Navigation Entities
+
+            builder.Entity<VoterElection>(
+                e =>
+                {
+                    e.HasKey(v => new { v.ElectionId,v.VoterId});
+                    e.HasOne(v => v.Voter)
+                    .WithMany(v => v.VoterElections)
+                    .HasForeignKey(v => v.VoterId);
+
+                    e.HasOne(v => v.Election)
+                    .WithMany(e => e.VoterElections)
+                    .HasForeignKey(v => v.ElectionId);
+                }
+                
+                );
+
+            #endregion
+        }
+
+        private static void overallProcessRegisterEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<OverallProgressRegister>(
+                e =>
+                {
+                    e.HasOne(e => e.ProcessConfiguration)
+                    .WithOne(e => e.OverallProgressRegister)
+                    .HasForeignKey<OverallProgressRegister>(e => e.ProcessConfigurationId);
+                }
+                );
+        }
+
+        private static void identificatorEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<IdentificatorType>(
+
+                            e =>
+                            {
+                                e.HasOne(e => e.Institution)
+                                .WithMany()
+                                .HasForeignKey(e => e.InstitutionId);
+                            }
+                            );
+        }
+
+        private static void identificationEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<Identification>(
+                e =>
+                {
+                    e.HasOne(i => i.IdentificatorType)
+                        .WithMany()
+                        .HasForeignKey(i => i.IdentificatorTypeId);
+                }
+                );
+        }
+
+        private static void voteEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<Vote>(e =>
+            {
+                e.HasOne(e => e.Election)
+                    .WithMany(e => e.Votes)
+                    .HasForeignKey(e => e.ElectionId);
+
+            });
+        }
+
+        private static void regionEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<Region>(
+                e =>
+                {
+                    e.HasOne(r => r.Institution)
+                        .WithMany(i => i.Regions)
+                        .HasForeignKey(r => r.InstitutionId);
+                }
+                );
+        }
+
+        private static void votableEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<Votable>(e =>
+            {
+                e.HasOne(v => v.Election)
+                .WithMany(e => e.Votables)
+                .HasForeignKey(e => e.ElectionId);
+
+            });
+        }
+
+        private static void electionEntityConfig(ModelBuilder builder)
+        {
+            builder.Entity<Election>(
+                e =>
+                {
+                    e.HasMany(el => el.Votables)
+                        .WithOne(v => v.Election)
+                        .HasForeignKey(el => el.ElectionId);
+
+                    e.HasMany(el => el.Votes)
+                    .WithOne(el => el.Election)
+                    .HasForeignKey(el => el.ElectionId);
+
+                    e.HasMany(el => el.VoterElections)
+                    .WithOne(ve => ve.Election)
+                    .HasForeignKey(ve => ve.ElectionId);
+
+                    e.HasOne(el => el.Region)
+                    .WithMany()
+                    .HasForeignKey(el => el.RegionId);
+
+                    e.HasOne(el => el.ProcessConfiguration)
+                    .WithMany(el => el.Elections)
+                    .HasForeignKey(el => el.ProcessConfigurationId);
+                }
+
+                );
+        }
+
+        private static void passwordConfigurationEntityConfig(ModelBuilder builder)
+        {
             builder.Entity<PasswordConfiguration>(e =>
             {
                 e.HasOne(pc => pc.ProcessConfiguration)
                     .WithOne(pc => pc.PasswordConfiguration)
-                    .HasForeignKey<ProcessConfiguration>(pc => pc.PasswordConfigurationId);
-
+                    .HasForeignKey<PasswordConfiguration>(pc => pc.ProcessConfigurationId);
             });
-
-
         }
 
         private static void processConfigurationEntityConfig(ModelBuilder builder)
@@ -56,14 +204,13 @@ namespace Votemaki.Infra.Storage
             builder.Entity<ProcessConfiguration>(
                 e =>
                 {
-                    e.HasOne(pc => pc.Institution)
-                        .WithMany(pc => pc.ProcessConfigurations)
-                        .HasForeignKey(pc => pc.InstitutionId);
-
                     e.HasMany(pc => pc.CalendarEvents)
                     .WithOne(cv => cv.ProcessConfiguration)
                     .HasForeignKey(cv => cv.ProcessConfigurationId);
 
+                    e.HasMany(el => el.Elections)
+                    .WithOne(el => el.ProcessConfiguration)
+                    .HasForeignKey(el => el.ProcessConfigurationId);
                 }
                 );
         }
@@ -72,10 +219,10 @@ namespace Votemaki.Infra.Storage
         {
             builder.Entity<Institution>(e =>
             {
-                e.HasMany(i => i.ProcessConfigurations)
-                .WithOne(pc => pc.Institution)
-                .HasForeignKey(pc => pc.InstitutionId);
-                e.HasMany(i => i.Regions);
+                e.HasMany(i => i.Regions)
+                .WithOne(r => r.Institution)
+                .HasForeignKey(i => i.InstitutionId);
+                ;
             });
         }
     }

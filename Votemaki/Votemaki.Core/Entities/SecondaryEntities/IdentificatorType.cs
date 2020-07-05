@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Votemaki.Core.Entities.MainEntities;
 
 namespace Votemaki.Core.Entities.SecondaryEntities
 {
@@ -11,6 +12,9 @@ namespace Votemaki.Core.Entities.SecondaryEntities
         [Required]
         public string Name { get; set; }
 
-        public string? Regex { get; set; }
+        public string Regex { get; set; } = "";
+        public Institution  Institution { get; set; }
+
+        public  Guid  InstitutionId { get; set; }
     }
 }

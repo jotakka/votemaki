@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Votemaki.Core.Entities.ConfigurationEntities;
 using Votemaki.Core.Entities.NavigationEntities;
 
@@ -7,6 +8,7 @@ namespace Votemaki.Core.Entities.MainEntities
 {
     public class Election
     {
+        [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
 

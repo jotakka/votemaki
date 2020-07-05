@@ -7,12 +7,12 @@ namespace Votemaki.Core.Entities.MainEntities
 {
     public class Identification
     {
+        [Key]
         public Guid Id { get; set; }
 
         [Required]
         public string Value { get; set; }
 
-        [ForeignKey("IdentificatorTypeId")]
         public Guid IdentificatorTypeId { get; set; }
 
         public IdentificatorType IdentificatorType { get; set; }

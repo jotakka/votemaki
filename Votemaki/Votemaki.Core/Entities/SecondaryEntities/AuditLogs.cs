@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Votemaki.Core.Entities.SecondaryEntities
 {
     public class AuditLog
     {
+        [Key]
         public int Id { get; set; }
         public string Message { get; set; }
         public string OriginIp { get; set; }

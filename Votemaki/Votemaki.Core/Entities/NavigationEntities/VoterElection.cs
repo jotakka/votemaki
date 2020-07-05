@@ -5,10 +5,10 @@ namespace Votemaki.Core.Entities.NavigationEntities
 {
     public class VoterElection
     {
-        public Guid ApplicationUserId { get; set; }
         public Guid ElectionId { get; set; }
-        public TemakiUser ApplicationUser { get; set; }
+        public Election Election { get; set; }
         public bool HasVoted { get; set; } = false;
+        public Guid VoterId { get; set; }
         public Voter Voter { get; set; }
         public bool IsAllowedToVote { get; set; } = true;
         public DateTimeOffset CasttedAt { get; set; } = DateTimeOffset.MinValue;

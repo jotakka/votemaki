@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Votemaki.Core.Entities.ConfigurationEntities;
 
 namespace Votemaki.Core.Entities.SecondaryEntities
 {
@@ -13,5 +14,8 @@ namespace Votemaki.Core.Entities.SecondaryEntities
         public bool HasPasswordConfiguration { get; set; } = false;
         public bool HasVoters { get; set; } = false;
         public bool HasVotables { get; set; } = false;
+
+        public Guid ProcessConfigurationId { get; set; }
+        public ProcessConfiguration ProcessConfiguration { get; set; }
     }
 }

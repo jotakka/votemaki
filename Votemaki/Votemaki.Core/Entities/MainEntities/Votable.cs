@@ -14,5 +14,10 @@ namespace Votemaki.Core.Entities.MainEntities
         public uint? Number { get; set; }
         public bool Approved { get; set; } = false;
         public uint? PresentationOrder { get; set; }
+
+        public Guid ElectionId { get; set; }
+        public Election Election { get; set; }
+
+
     }
 }
