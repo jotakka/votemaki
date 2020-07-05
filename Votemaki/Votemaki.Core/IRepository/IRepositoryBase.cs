@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Votemaki.Core.IRepositories
+namespace Votemaki.Core.IRepository
 {
     public interface IRepositoryBase<T>
     {

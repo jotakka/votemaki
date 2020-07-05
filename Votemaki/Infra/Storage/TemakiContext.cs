@@ -27,7 +27,7 @@ namespace Votemaki.Infra.Storage
         public DbSet<CalendarEvent> CalendarEvents { get; internal set; }
         public DbSet<IdentificatorType> IdentificatorTypes { get; internal set; }
         public DbSet<OverallProgressRegister> OverallProgressRegisters { get; internal set; }
-        public DbSet<Institution> Institutons { get; internal set; }
+        public DbSet<Institution> Institutions { get; internal set; }
 
         #endregion
         public TemakiContext()
