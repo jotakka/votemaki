@@ -10,7 +10,7 @@ using Votemaki.Core.Entities.SecondaryEntities;
 
 namespace Votemaki.Infra.Storage
 {
-    public class TemakiContext : IdentityDbContext<TemakiUser, Role, string>
+    public class TemakiContext : IdentityDbContext<TemakiUser, Role, Guid>
     {
         #region ENTITY DB SETS
         public DbSet<Election> Elections { get; internal set; }
@@ -30,7 +30,13 @@ namespace Votemaki.Infra.Storage
         public DbSet<Institution> Institutons { get; internal set; }
 
         #endregion
+        public TemakiContext()
+        {
+        }
 
+        public TemakiContext(DbContextOptions options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -77,11 +83,14 @@ namespace Votemaki.Infra.Storage
                     e.HasKey(v => new { v.ElectionId,v.VoterId});
                     e.HasOne(v => v.Voter)
                     .WithMany(v => v.VoterElections)
-                    .HasForeignKey(v => v.VoterId);
+                    .HasForeignKey(v => v.VoterId)
+                    .OnDelete(DeleteBehavior.NoAction);
+                    ;
 
                     e.HasOne(v => v.Election)
                     .WithMany(e => e.VoterElections)
-                    .HasForeignKey(v => v.ElectionId);
+                    .HasForeignKey(v => v.ElectionId)
+                    .OnDelete(DeleteBehavior.NoAction);
                 }
                 
                 );
@@ -153,9 +162,9 @@ namespace Votemaki.Infra.Storage
         {
             builder.Entity<Votable>(e =>
             {
-                e.HasOne(v => v.Election)
-                .WithMany(e => e.Votables)
-                .HasForeignKey(e => e.ElectionId);
+                //e.HasOne(v => v.Election)
+                //.WithMany(e => e.Votables)
+                //.HasForeignKey(e => e.ElectionId);
 
             });
         }
@@ -167,7 +176,8 @@ namespace Votemaki.Infra.Storage
                 {
                     e.HasMany(el => el.Votables)
                         .WithOne(v => v.Election)
-                        .HasForeignKey(el => el.ElectionId);
+                        .HasForeignKey(el => el.ElectionId)
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     e.HasMany(el => el.Votes)
                     .WithOne(el => el.Election)
