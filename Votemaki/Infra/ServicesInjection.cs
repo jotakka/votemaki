@@ -18,15 +18,15 @@ namespace Votemaki.Infra
         public static IServiceCollection AddInfraLibraryInjections(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddSingleton<ICalendarEventRepository, CalendarEventRepository>();
-            services.AddSingleton<ICandidateRepository, CandidateRepository>();
-            services.AddSingleton<IElectionRepository, ElectionRepository>();
-            services.AddSingleton<IIdentificationRepository, IdentificationRepository>();
-            services.AddSingleton<IInstitutionRepository, InstitutionRepository>();
-            services.AddSingleton<IPartyRepository, PartyRepository>();
-            services.AddSingleton<IProcessConfigurationRepository, ProcessConfigurationRepository>();
-            services.AddSingleton<IRegionRepository, RegionRepository>();
-            services.AddSingleton<IRoleRepository, RoleRepository>();
+            services.AddScoped<ICalendarEventRepository, CalendarEventRepository>();
+            services.AddScoped<ICandidateRepository, CandidateRepository>();
+            services.AddScoped<IElectionRepository, ElectionRepository>();
+            services.AddScoped<IIdentificationRepository, IdentificationRepository>();
+            services.AddScoped<IInstitutionRepository, InstitutionRepository>();
+            services.AddScoped<IPartyRepository, PartyRepository>();
+            services.AddScoped<IProcessConfigurationRepository, ProcessConfigurationRepository>();
+            services.AddScoped<IRegionRepository, RegionRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             //ADD DB CONTEXT
             services.AddDbContext<TemakiContext>(options =>

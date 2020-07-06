@@ -1,5 +1,5 @@
 ﻿<h3>@_localizer["title"]</h3>
-<Validations Mode="ValidationMode.Auto" ValidateOnLoad="false"  Model="@institution">
+<Validations Mode="ValidationMode.Auto" ValidateOnLoad="false" Model="@institution">
     <Validation>
         <Field Horizontal="true">
             <FieldLabel ColumnSize="ColumnSize.Is2">@_localizer["institutionNameDisplayName"]</FieldLabel>
@@ -27,8 +27,55 @@
 </Validations>
 
 
-@code {
-    [Inject] public IStringLocalizer<InstitutionRegistrationComponent> _localizer { get; set; }
 
-    private Institution institution = new Institution();
+<MemoEdit Rows="5" Text="@institution.Description" MaxLength="500" TextChanged="@onDescriptionChange" Placeholder="@_localizer["descriptionPH"]" />
+
+
+<Divider></Divider>
+
+<Button Color="Color.Primary" Block="true" @onclick="@(async () => await saveInstitution())">
+    <Icon Name="IconName.Save" />
+    @_localizer["saveInstitutionBtn"]
+</Button>
+
+@code {
+    [Inject] private IStringLocalizer<InstitutionRegistrationComponent> _localizer { get; set; }
+    [Inject] private Votemaki.Core.IRepository.IInstitutionRepository institutionRepository { get; set; }
+
+    private Institution institution { get; set; } = new Institution();
+
+    protected override async Task OnInitializedAsync()
+    {
+        institution = await institutionRepository.GetFirst();
+
+        institution ??= new Institution();
+    }
+
+    private async Task saveInstitution()
+    {
+        try
+        {
+            if (institution.Id == Guid.Empty)
+            {
+                await institutionRepository.AddAsync(institution);
+            }
+            else
+            {
+                await institutionRepository.UpdateAsync(institution);
+            }
+        }
+        catch (Exception e)
+        {
+
+            throw;
+        }
+    }
+
+    private void onDescriptionChange(string value)
+    {
+
+        institution.Description = value.Substring(0,value.Length>500?500:value.Length);
+    }
+
+
 }

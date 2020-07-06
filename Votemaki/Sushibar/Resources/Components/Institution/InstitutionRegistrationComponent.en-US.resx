@@ -132,4 +132,10 @@
   <data name="addressPlaceHolder" xml:space="preserve">
     <value>Insert here an andress</value>
   </data>
+  <data name="saveInstitutionBtn" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="descriptionPH" xml:space="preserve">
+    <value>Insert here a description for your institution</value>
+  </data>
 </root>

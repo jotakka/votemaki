@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infra\Infra.csproj" />
     <ProjectReference Include="..\Votemaki.Core\Votemaki.Core.csproj" />
   </ItemGroup>
 

@@ -23,7 +23,7 @@ namespace Votemaki.Infra.Repositories
 
         public async Task<Guid> AddAsync(T input)
         {
-            await _temakiContext.AddAsync(input);
+            await _temakiContext.AddAsync<T>(input);
             await _temakiContext.SaveChangesAsync();
             var propertyId = input.GetType().GetProperty("Id");
             var value = propertyId.GetValue(input, null);

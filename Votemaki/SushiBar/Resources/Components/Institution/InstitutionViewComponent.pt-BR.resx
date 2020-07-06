@@ -109,13 +109,10 @@
   <data name="addressDisplayName" xml:space="preserve">
     <value></value>
   </data>
-  <data name="addressPlaceHolder" xml:space="preserve">
-    <value></value>
+  <data name="address" xml:space="preserve">
+    <value>Endereço</value>
   </data>
-  <data name="saveInstitutionBtn" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="descriptionPH" xml:space="preserve">
-    <value>Insira aqui a descrição da instituição</value>
+  <data name="addElectionBtn" xml:space="preserve">
+    <value>Adicionar processo eleitoral</value>
   </data>
 </root>

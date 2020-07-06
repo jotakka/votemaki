@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Sushibar.Data;
 using Votemaki.Infra;
 
 namespace Sushibar
@@ -34,7 +33,6 @@ namespace Sushibar
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             configLocalizationService(services);
             configBlazorizeService(services);
 

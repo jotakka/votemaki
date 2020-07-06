@@ -1,0 +1,44 @@
+﻿<h3>@_localizer["title"]</h3>
+
+
+<Jumbotron Background="Background.Secondary" Margin="Margin.Is4.FromBottom">
+    <JumbotronTitle Size="JumbotronTitleSize.Is4">@institution.Name</JumbotronTitle>
+    <JumbotronSubtitle>
+        @_localizer["address"]:@institution.Address
+    </JumbotronSubtitle>
+    <Divider></Divider>
+    <Paragraph>
+        @institution.Description
+    </Paragraph>
+</Jumbotron>
+
+<Divider Text="Eleições"></Divider>
+
+<Button Color="Color.Primary" Block="true" @onclick="@(async () => await addNewElection())">
+    <Icon Name="IconName.Add" /> @_localizer["addElectionBtn"]
+</Button>
+
+
+
+
+
+@code {
+    [Inject] private IStringLocalizer<InstitutionViewComponent> _localizer { get; set; }
+    [Inject] private Votemaki.Core.IRepository.IInstitutionRepository institutionRepository { get; set; }
+
+    private Institution institution { get; set; } = new Institution();
+
+    protected override async Task OnInitializedAsync()
+    {
+        institution = await institutionRepository.GetFirst();
+
+        institution ??= new Institution();
+    }
+
+    private async Task addNewElection()
+    {
+
+    }
+
+
+}
