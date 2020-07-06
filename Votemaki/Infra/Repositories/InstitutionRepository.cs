@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,12 @@ namespace Votemaki.Infra.Repositories
             TemakiContext temakiContext
             ) : base(temakiContext)
         {
+        }
+
+
+        public async Task<Institution> GetFirst()
+        {
+            return await _temakiContext.Institutions.FirstOrDefaultAsync();
         }
 
     }

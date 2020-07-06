@@ -8,7 +8,7 @@ using Votemaki.Infra.Storage;
 
 namespace Votemaki.Infra.Repositories
 {
-    public class RoleRepository : RepositoryBase<Role>, IRoleRepository
+    public class RoleRepository : RepositoryBase<TemakiRole>, IRoleRepository
     {
         public RoleRepository(
             TemakiContext temakiContext

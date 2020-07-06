@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sushibar.Data;
+using Votemaki.Infra;
 
 namespace Sushibar
 {
@@ -36,6 +37,9 @@ namespace Sushibar
             services.AddSingleton<WeatherForecastService>();
             configLocalizationService(services);
             configBlazorizeService(services);
+
+            IServiceCollectionExtension.AddInfraLibraryInjections(services, Configuration);
+
 
         }
 

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Votemaki.Core.Entities.MainEntities
 {
-    public class Role : IdentityRole<Guid>
+    public class TemakiRole : IdentityRole<Guid>
     {
 
         [Key]

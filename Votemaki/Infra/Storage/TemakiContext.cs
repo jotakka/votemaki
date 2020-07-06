@@ -10,7 +10,7 @@ using Votemaki.Core.Entities.SecondaryEntities;
 
 namespace Votemaki.Infra.Storage
 {
-    public class TemakiContext : IdentityDbContext<TemakiUser, Role, Guid>
+    public class TemakiContext : IdentityDbContext<TemakiUser, TemakiRole, Guid>
     {
         #region ENTITY DB SETS
         public DbSet<Election> Elections { get; internal set; }

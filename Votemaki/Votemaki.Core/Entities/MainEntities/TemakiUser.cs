@@ -26,7 +26,7 @@ namespace Votemaki.Core.Entities.MainEntities
         public Guid RegionId { get; set; }
         public Region Region { get; set; }
 
-        public IEnumerable<Role> Roles { get; set; }
+        public IEnumerable<TemakiRole> Roles { get; set; }
         public IEnumerable<Identification> Identifications { get; set; }
     }
 }

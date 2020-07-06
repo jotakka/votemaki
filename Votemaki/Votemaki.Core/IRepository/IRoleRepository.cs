@@ -5,7 +5,7 @@ using Votemaki.Core.Entities.MainEntities;
 
 namespace Votemaki.Core.IRepository
 {
-    public interface IRoleRepository : IRepositoryBase<Role>
+    public interface IRoleRepository : IRepositoryBase<TemakiRole>
     {
     }
 }
