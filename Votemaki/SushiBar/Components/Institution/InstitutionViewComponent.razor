@@ -1,5 +1,5 @@
-﻿<h3>@_localizer["title"]</h3>
-
+﻿@inject IJSRuntime jsRuntime
+<h3>@_localizer["title"]</h3>
 
 <Jumbotron Background="Background.Secondary" Margin="Margin.Is4.FromBottom">
     <JumbotronTitle Size="JumbotronTitleSize.Is4">@institution.Name</JumbotronTitle>
@@ -20,23 +20,34 @@
 
 
 
-
-
 @code {
     [Inject] private IStringLocalizer<InstitutionViewComponent> _localizer { get; set; }
     [Inject] private Votemaki.Core.IRepository.IInstitutionRepository institutionRepository { get; set; }
+
+    Sushibar.Components.Util.TemakiSnackbar _temakiSnackbar = new Util.TemakiSnackbar();
+
 
     private Institution institution { get; set; } = new Institution();
 
     protected override async Task OnInitializedAsync()
     {
-        institution = await institutionRepository.GetFirst();
+        try
+        {
+            institution = await institutionRepository.GetFirst();
 
-        institution ??= new Institution();
+            institution ??= new Institution();
+        }
+        catch (Exception e)
+        {
+            await jsRuntime.InvokeAsync<string>("console.log", e.Message);
+            _temakiSnackbar.InformError(_localizer["errorGettingData"]);
+
+        }
     }
 
     private async Task addNewElection()
     {
+        await _temakiSnackbar.InformError(" Sucesso SnackMar");
 
     }
 

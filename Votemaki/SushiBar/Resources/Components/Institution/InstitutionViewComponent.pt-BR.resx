@@ -115,4 +115,7 @@
   <data name="addElectionBtn" xml:space="preserve">
     <value>Adicionar processo eleitoral</value>
   </data>
+  <data name="errorGettingData" xml:space="preserve">
+    <value>Erro ao obter dados de instituição</value>
+  </data>
 </root>

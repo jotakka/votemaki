@@ -138,4 +138,16 @@
   <data name="descriptionPH" xml:space="preserve">
     <value>Insira aqui uma descrição para sua instituição</value>
   </data>
+  <data name="successSave" xml:space="preserve">
+    <value>Instituição salva com sucesso</value>
+  </data>
+  <data name="successUpdate" xml:space="preserve">
+    <value>Instituição atualizada com sucesso</value>
+  </data>
+  <data name="errorSaveData" xml:space="preserve">
+    <value>Erro ao salvar ou atualizar dados da instituição</value>
+  </data>
+  <data name="errorGettingData" xml:space="preserve">
+    <value>Erro ao obter dados de instituição</value>
+  </data>
 </root>

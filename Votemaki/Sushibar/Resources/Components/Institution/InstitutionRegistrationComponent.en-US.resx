@@ -138,4 +138,16 @@
   <data name="descriptionPH" xml:space="preserve">
     <value>Insert here a description for your institution</value>
   </data>
+  <data name="successSave" xml:space="preserve">
+    <value>Institution saved successfully</value>
+  </data>
+  <data name="successUpdate" xml:space="preserve">
+    <value>Institution updated successfully</value>
+  </data>
+  <data name="errorSaveData" xml:space="preserve">
+    <value>Error saving or updating institution data</value>
+  </data>
+  <data name="errorGettingData" xml:space="preserve">
+    <value>Error when trying getting institution data</value>
+  </data>
 </root>

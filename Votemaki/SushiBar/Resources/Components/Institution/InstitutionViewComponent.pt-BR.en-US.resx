@@ -126,4 +126,7 @@
   <data name="title" xml:space="preserve">
     <value>Institution</value>
   </data>
+  <data name="errorGettingData" xml:space="preserve">
+    <value>Error getting institution data</value>
+  </data>
 </root>

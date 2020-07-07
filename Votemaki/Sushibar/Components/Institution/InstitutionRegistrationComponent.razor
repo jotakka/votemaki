@@ -1,4 +1,8 @@
-﻿<h3>@_localizer["title"]</h3>
+﻿@inject IJSRuntime jsRuntime
+<h3>@_localizer["title"]</h3>
+
+<Sushibar.Components.Util.TemakiSnackbar @ref="_temakiSnackbar" />
+
 <Validations Mode="ValidationMode.Auto" ValidateOnLoad="false" Model="@institution">
     <Validation>
         <Field Horizontal="true">
@@ -26,10 +30,7 @@
     </Validation>
 </Validations>
 
-
-
 <MemoEdit Rows="5" Text="@institution.Description" MaxLength="500" TextChanged="@onDescriptionChange" Placeholder="@_localizer["descriptionPH"]" />
-
 
 <Divider></Divider>
 
@@ -42,39 +43,57 @@
     [Inject] private IStringLocalizer<InstitutionRegistrationComponent> _localizer { get; set; }
     [Inject] private Votemaki.Core.IRepository.IInstitutionRepository institutionRepository { get; set; }
 
+    Sushibar.Components.Util.TemakiSnackbar _temakiSnackbar = new Util.TemakiSnackbar();
     private Institution institution { get; set; } = new Institution();
 
     protected override async Task OnInitializedAsync()
     {
-        institution = await institutionRepository.GetFirst();
+        try
+        {
 
-        institution ??= new Institution();
+            institution = await institutionRepository.GetFirst();
+
+            institution ??= new Institution();
+
+        }
+        catch (Exception e)
+        {
+            await jsRuntime.InvokeAsync<string>("console.log", e.Message); 
+
+            _temakiSnackbar.InformError(_localizer["errorGettingData"]);
+
+        }
     }
 
     private async Task saveInstitution()
     {
+        Snackbar snackbar;
         try
         {
             if (institution.Id == Guid.Empty)
             {
                 await institutionRepository.AddAsync(institution);
+                _temakiSnackbar.InformError(_localizer["successSave"]);
+
             }
             else
             {
                 await institutionRepository.UpdateAsync(institution);
+                _temakiSnackbar.InformError(_localizer["successUpdate"]);
+
             }
         }
         catch (Exception e)
         {
+            _temakiSnackbar.InformError(_localizer["errorSaveData"]);
 
-            throw;
         }
     }
 
     private void onDescriptionChange(string value)
     {
 
-        institution.Description = value.Substring(0,value.Length>500?500:value.Length);
+        institution.Description = value.Substring(0, value.Length > 500 ? 500 : value.Length);
     }
 
 

@@ -1,0 +1,34 @@
+﻿<Snackbar @ref="@_successSnackbar" Color="@SnackbarColor.Success" >
+    <SnackbarBody>
+        <Icon Name="IconName.ThumbsUp" />
+        @_message;
+    </SnackbarBody>
+</Snackbar>
+
+<Snackbar @ref="@_errorSnackbar" Color="@SnackbarColor.Danger">
+    <SnackbarBody>
+        <Icon Name="IconName.TimesCircle" />
+        @_message;
+    </SnackbarBody>
+</Snackbar>
+
+
+
+@code {
+    private Snackbar _errorSnackbar;
+    private Snackbar _successSnackbar;
+
+    private string _message = "";
+
+
+    public async Task InformSuccess( string message) {
+        _message = message;
+        _successSnackbar.Show();
+    }
+
+    public async Task InformError(string message)
+    {
+        _message = message;
+        _errorSnackbar.Show();
+    }
+}
