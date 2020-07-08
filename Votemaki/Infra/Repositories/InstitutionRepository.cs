@@ -17,11 +17,10 @@ namespace Votemaki.Infra.Repositories
         {
         }
 
-
         public async Task<Institution> GetFirst()
         {
-            return await _temakiContext.Institutions.FirstOrDefaultAsync();
+            return await _temakiContext.Institutions.AsNoTracking()
+                .Include(r=>r.Regions).FirstOrDefaultAsync();
         }
-
     }
 }

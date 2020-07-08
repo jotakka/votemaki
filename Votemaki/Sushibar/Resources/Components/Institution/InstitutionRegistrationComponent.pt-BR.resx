@@ -150,4 +150,25 @@
   <data name="errorGettingData" xml:space="preserve">
     <value>Erro ao obter dados de instituição</value>
   </data>
+  <data name="errorAddingRegion" xml:space="preserve">
+    <value>Erro ao adicionar nova região</value>
+  </data>
+  <data name="errorDeletingRegion" xml:space="preserve">
+    <value>Erro ao deletar região</value>
+  </data>
+  <data name="successAddingRegion" xml:space="preserve">
+    <value>Região adicionada com sucesso, não esqueça de clicar em salvar instituição para salvar essa mudança.</value>
+  </data>
+  <data name="successSavingRegion" xml:space="preserve">
+    <value>Região excluída com sucesso</value>
+  </data>
+  <data name="regionPH" xml:space="preserve">
+    <value>Nome da região</value>
+  </data>
+  <data name="addRegionBtn" xml:space="preserve">
+    <value>Adicionar nova região</value>
+  </data>
+  <data name="repeatedNameRegion" xml:space="preserve">
+    <value>Uma região com mesmo nome já foi adicionada</value>
+  </data>
 </root>

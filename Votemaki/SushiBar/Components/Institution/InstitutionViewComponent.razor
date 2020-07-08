@@ -40,7 +40,7 @@
         catch (Exception e)
         {
             await jsRuntime.InvokeAsync<string>("console.log", e.Message);
-            _temakiSnackbar.InformError(_localizer["errorGettingData"]);
+            await _temakiSnackbar.InformError(_localizer["errorGettingData"]);
 
         }
     }

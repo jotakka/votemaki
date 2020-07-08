@@ -30,6 +30,18 @@
     </Validation>
 </Validations>
 
+<ul>
+    @foreach (var region in institution.Regions ??= new List<Region>())
+    {
+        <li>@region.RegionName
+            <Button Color="Color.Danger" @onclick="@(async ()=> await deleteRegionAsync(region))">
+                <Icon Name="IconName.TimesCircle" />
+            </Button>
+            </li> 
+    }
+</ul>
+
+
 <MemoEdit Rows="5" Text="@institution.Description" MaxLength="500" TextChanged="@onDescriptionChange" Placeholder="@_localizer["descriptionPH"]" />
 
 <Divider></Divider>
@@ -38,10 +50,27 @@
     <Icon Name="IconName.Save" />
     @_localizer["saveInstitutionBtn"]
 </Button>
+<Divider></Divider>
+
+
+<Addons>
+    <Addon AddonType="AddonType.Body">
+        <TextEdit Placeholder="@_localizer["regionPH"]" @bind-Text="@regionToAddName" Casing="@CharacterCasing.Upper" />
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <Button Color="Color.Secondary" Disabled="@string.IsNullOrEmpty(regionToAddName)" @onclick="@(async () => await addRegion())">
+            <Icon Name="IconName.Add" />
+            @_localizer["addRegionBtn"]
+        </Button>
+    </Addon>
+</Addons>
 
 @code {
     [Inject] private IStringLocalizer<InstitutionRegistrationComponent> _localizer { get; set; }
     [Inject] private Votemaki.Core.IRepository.IInstitutionRepository institutionRepository { get; set; }
+    [Inject] private Votemaki.Core.IRepository.IRegionRepository regionRepository { get; set; }
+
+    private string regionToAddName = "";
 
     Sushibar.Components.Util.TemakiSnackbar _temakiSnackbar = new Util.TemakiSnackbar();
     private Institution institution { get; set; } = new Institution();
@@ -51,19 +80,70 @@
         try
         {
 
-            institution = await institutionRepository.GetFirst();
-
+            institution = (await institutionRepository.GetFirst());
             institution ??= new Institution();
 
         }
         catch (Exception e)
         {
-            await jsRuntime.InvokeAsync<string>("console.log", e.Message); 
+            await jsRuntime.InvokeAsync<string>("console.log", e.Message);
 
-            _temakiSnackbar.InformError(_localizer["errorGettingData"]);
+            await _temakiSnackbar.InformError(_localizer["errorGettingData"]);
 
         }
     }
+
+    private async Task deleteRegionAsync(Region region)
+    {
+
+        try
+        {
+            if (region.Id != Guid.Empty)
+            {
+                await regionRepository.DeleteAsync(region.Id);
+
+            }
+
+            institution.Regions = institution.Regions.Where(r=>r!=region);
+            await _temakiSnackbar.InformSuccess(_localizer["successDeletingRegion"]);
+        }
+        catch (Exception ex)
+        {
+            await jsRuntime.InvokeAsync<string>("console.log", ex.Message);
+
+            await _temakiSnackbar.InformError(_localizer["errorDeletingRegion"]);
+        }
+    }
+
+    private async Task addRegion()
+    {
+        try
+        {
+            regionToAddName = regionToAddName.ToUpper();
+            if (institution.Regions.Any(r => r.RegionName == regionToAddName))
+            {
+
+                regionToAddName = "";
+                await _temakiSnackbar.InformError(_localizer["repeatedNameRegion"]);
+                return;
+            }
+
+            institution.Regions = institution.Regions.Append(new Region()
+            {
+                RegionName = regionToAddName
+            }).ToList();
+
+            regionToAddName = "";
+            await _temakiSnackbar.InformSuccess(_localizer["successAddingRegion"]);
+        }
+        catch (Exception ex)
+        {
+            await jsRuntime.InvokeAsync<string>("console.log", ex.Message);
+
+            await _temakiSnackbar.InformError(_localizer["errorAddingRegion"]);
+        }
+    }
+
 
     private async Task saveInstitution()
     {
@@ -73,19 +153,19 @@
             if (institution.Id == Guid.Empty)
             {
                 await institutionRepository.AddAsync(institution);
-                _temakiSnackbar.InformError(_localizer["successSave"]);
+                await _temakiSnackbar.InformSuccess(_localizer["successSave"]);
 
             }
             else
             {
                 await institutionRepository.UpdateAsync(institution);
-                _temakiSnackbar.InformError(_localizer["successUpdate"]);
+                await _temakiSnackbar.InformSuccess(_localizer["successUpdate"]);
 
             }
         }
         catch (Exception e)
         {
-            _temakiSnackbar.InformError(_localizer["errorSaveData"]);
+            await _temakiSnackbar.InformError(_localizer["errorSaveData"]);
 
         }
     }

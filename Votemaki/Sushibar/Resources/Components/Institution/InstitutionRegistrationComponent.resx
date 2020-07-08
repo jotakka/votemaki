@@ -130,4 +130,25 @@
   <data name="errorGettingData" xml:space="preserve">
     <value></value>
   </data>
+  <data name="errorAddingRegion" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="errorDeletingRegion" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="successAddingRegion" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="successSavingRegion" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="regionPH" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="addRegionBtn" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="repeatedNameRegion" xml:space="preserve">
+    <value></value>
+  </data>
 </root>
